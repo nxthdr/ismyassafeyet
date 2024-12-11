@@ -21,7 +21,7 @@ struct CLI {
     #[arg(long, default_value = "https://invalid.rpki.isbgpsafeyet.com")]
     invalid_url: String,
 
-    /// Request timeout
+    /// Requests timeout
     #[arg(long, short, default_value = "3")]
     timeout: usize,
 
