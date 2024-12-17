@@ -84,7 +84,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     set_logging(&cli);
 
     let alphabet = cli.alphabet.chars().collect::<Vec<char>>();
-    let id = nanoid!(10, &alphabet);
+    let mut id = String::new();
+    if alphabet.len() != 0 {
+        id = nanoid!(10, &alphabet);
+    }
 
     let valid_url = Url::parse(&cli.valid_url)?;
     let valid_url = valid_url.join(&id)?;
