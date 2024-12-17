@@ -21,6 +21,10 @@ struct CLI {
     #[arg(long, default_value = "https://invalid.rpki.isbgpsafeyet.com")]
     invalid_url: String,
 
+    /// Alphabet to use for generating the ID
+    #[arg(long, default_value = "1234567890abcdef")]
+    alphabet: String,
+
     /// Requests timeout
     #[arg(long, short, default_value = "3")]
     timeout: usize,
@@ -79,10 +83,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cli = CLI::parse();
     set_logging(&cli);
 
-    let alphabet: [char; 16] = [
-        '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'a', 'b', 'c', 'd', 'e', 'f',
-    ];
-
+    let alphabet = cli.alphabet.chars().collect::<Vec<char>>();
     let id = nanoid!(10, &alphabet);
 
     let valid_url = Url::parse(&cli.valid_url)?;
