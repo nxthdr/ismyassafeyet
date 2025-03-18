@@ -1,18 +1,16 @@
-use chrono::Local;
+use anyhow::Result;
 use clap::Parser as CliParser;
 use clap_verbosity_flag::{InfoLevel, Verbosity};
-use env_logger::Builder;
-use log::{debug, info};
 use nanoid::nanoid;
 use reqwest::Client;
 use serde::Deserialize;
-use std::io::Write;
 use std::time::Duration;
+use tracing::{debug, info};
 use url::Url;
 
 #[derive(CliParser, Debug)]
 #[command(version, about, long_about = None)]
-struct CLI {
+struct Cli {
     /// The URL to use for valid requests
     #[arg(long, default_value = "https://valid.rpki.isbgpsafeyet.com")]
     valid_url: String,
@@ -34,19 +32,15 @@ struct CLI {
     verbose: Verbosity<InfoLevel>,
 }
 
-fn set_logging(cli: &CLI) {
-    Builder::new()
-        .format(|buf, record| {
-            writeln!(
-                buf,
-                "{} [{}] - {}",
-                Local::now().format("%Y-%m-%dT%H:%M:%S"),
-                record.level(),
-                record.args()
-            )
-        })
-        .filter_module("ismyassafeyet", cli.verbose.log_level_filter())
-        .init();
+fn set_tracing(cli: &Cli) -> Result<()> {
+    let subscriber = tracing_subscriber::fmt()
+        .compact()
+        .with_file(true)
+        .with_line_number(true)
+        .with_max_level(cli.verbose)
+        .finish();
+    tracing::subscriber::set_global_default(subscriber)?;
+    Ok(())
 }
 
 #[allow(dead_code)]
@@ -79,9 +73,9 @@ async fn check_success(client: &Client, url: Url) -> bool {
 }
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let cli = CLI::parse();
-    set_logging(&cli);
+async fn main() -> Result<()> {
+    let cli = Cli::parse();
+    set_tracing(&cli)?;
 
     let alphabet = cli.alphabet.chars().collect::<Vec<char>>();
     let mut id = String::new();
