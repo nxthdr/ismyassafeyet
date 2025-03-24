@@ -4,11 +4,12 @@ Simple tool to check if your AS (ISP, own AS, etc.) is correctly implementing RP
 Basically [isbgpsafeyet](https://isbgpsafeyet.com/) but as a CLI tool.
 
 ```
-Usage: ismyassafeyet [OPTIONS]
+Usage: rovcheck [OPTIONS]
 
 Options:
       --valid-url <VALID_URL>      The URL to use for valid requests [default: https://valid.rpki.isbgpsafeyet.com]
       --invalid-url <INVALID_URL>  The URL to use for invalid requests [default: https://invalid.rpki.isbgpsafeyet.com]
+      --alphabet <ALPHABET>        Alphabet to use for generating the ID [default: 1234567890abcdef]
   -t, --timeout <TIMEOUT>          Requests timeout [default: 3]
   -v, --verbose...                 Increase logging verbosity
   -q, --quiet...                   Decrease logging verbosity

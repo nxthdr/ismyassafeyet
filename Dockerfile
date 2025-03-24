@@ -12,7 +12,7 @@ RUN apt-get update \
     && apt-get install -y curl openssl \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /usr/local/cargo/bin/ismyassafeyet /app/ismyassafeyet
+COPY --from=builder /usr/local/cargo/bin/rovcheck /app/rovcheck
 
-ENTRYPOINT [ "/app/ismyassafeyet" ]
+ENTRYPOINT [ "/app/rovcheck" ]
 CMD [ "--help" ]

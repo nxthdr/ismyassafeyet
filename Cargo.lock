@@ -650,22 +650,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7943c866cc5cd64cbc25b2e01621d07fa8eb2a1a23160ee81ce38704e97b8ecf"
 
 [[package]]
-name = "ismyassafeyet"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "clap",
- "clap-verbosity-flag",
- "nanoid",
- "reqwest",
- "serde",
- "tokio",
- "tracing",
- "tracing-subscriber",
- "url",
-]
-
-[[package]]
 name = "itoa"
 version = "1.0.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1024,6 +1008,22 @@ dependencies = [
  "spin",
  "untrusted",
  "windows-sys 0.52.0",
+]
+
+[[package]]
+name = "rovcheck"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "clap-verbosity-flag",
+ "nanoid",
+ "reqwest",
+ "serde",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+ "url",
 ]
 
 [[package]]

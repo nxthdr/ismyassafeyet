@@ -1,7 +1,19 @@
 [package]
-name = "ismyassafeyet"
+name = "rovcheck"
 version = "0.1.0"
+license = "MIT"
+readme = "README.md"
+description = "Check if ISP/AS is doing RPKI Origin Validation"
+repository = "https://github.com/nxthdr/risotto"
+homepage = "https://nxthdr.dev"
+keywords = ["BGP", "RPKI", "ROV"]
 edition = "2021"
+exclude = [
+    ".github/*",
+    "integration/*",
+    "logo/*",
+    "renovate.json",
+]
 
 [dependencies]
 anyhow = "1.0.97"
