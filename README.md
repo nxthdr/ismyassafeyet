@@ -1,4 +1,4 @@
-# Is my AS safe yet?
+# Route Origin Validation Check
 
 Simple tool to check if your AS (ISP, own AS, etc.) is correctly implementing RPKI ROV.
 Basically [isbgpsafeyet](https://isbgpsafeyet.com/) but as a CLI tool.

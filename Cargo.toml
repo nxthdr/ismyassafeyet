@@ -10,8 +10,6 @@ keywords = ["BGP", "RPKI", "ROV"]
 edition = "2021"
 exclude = [
     ".github/*",
-    "integration/*",
-    "logo/*",
     "renovate.json",
 ]
 
